@@ -1,0 +1,10 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="220" fill="#E1F5FE"/>
+  <rect x="40" y="60" width="90" height="90" fill="#78909C"/>
+  <rect x="55" y="75" width="15" height="60" fill="#455A64"/>
+  <rect x="85" y="75" width="15" height="60" fill="#455A64"/>
+  <path d="M130 90 C170 90 175 130 210 130 L210 190 L130 190 Z" fill="#0288D1"/>
+  <path d="M130 100 C165 100 170 135 205 138" stroke="#B3E5FC" stroke-width="4" fill="none"/>
+  <rect x="20" y="150" width="260" height="45" fill="#4FC3F7"/>
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="14" fill="#01579B" text-anchor="middle" font-weight="700">PLTA (Air)</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="220" fill="#E1F0F5"/>
+  <circle cx="150" cy="110" r="55" fill="#B3E5FC" opacity="0.6"/>
+  <path d="M150 60 C165 90 175 100 165 125 C160 140 138 140 135 122 C132 108 142 100 140 88 C138 100 122 108 125 128 C128 148 172 150 175 122 C180 95 160 82 150 60 Z" fill="#FF7043"/>
+  <path d="M150 78 C158 96 162 104 156 118" stroke="#FFCCBC" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <rect x="130" y="160" width="40" height="14" rx="3" fill="#607D8B"/>
+  <rect x="140" y="174" width="20" height="20" fill="#607D8B"/>
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="14" fill="#37474F" text-anchor="middle" font-weight="700">Gas Alam</text>
+</svg>

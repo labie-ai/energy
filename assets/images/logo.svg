@@ -1,0 +1,39 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lg-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#1E88E5"/>
+    </linearGradient>
+    <linearGradient id="lg-leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7BE495"/>
+      <stop offset="100%" stop-color="#2E8B57"/>
+    </linearGradient>
+    <linearGradient id="lg-bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="120" cy="120" r="112" fill="url(#lg-sky)"/>
+  <circle cx="120" cy="120" r="112" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.55"/>
+
+  <!-- city skyline -->
+  <g fill="#0B3B66" opacity="0.9">
+    <rect x="34" y="150" width="24" height="55" rx="3"/>
+    <rect x="62" y="130" width="22" height="75" rx="3"/>
+    <rect x="88" y="160" width="20" height="45" rx="3"/>
+    <rect x="132" y="150" width="22" height="55" rx="3"/>
+    <rect x="158" y="120" width="24" height="85" rx="3"/>
+    <rect x="186" y="155" width="20" height="50" rx="3"/>
+  </g>
+
+  <!-- leaf -->
+  <path d="M120 60 C155 65 175 95 165 130 C130 135 105 115 105 85 C105 75 111 65 120 60 Z" fill="url(#lg-leaf)"/>
+  <path d="M120 60 C115 90 120 115 165 130" stroke="#1F6E43" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- lightning bolt through leaf -->
+  <path d="M128 55 L104 108 L120 108 L110 150 L146 96 L128 96 Z" fill="url(#lg-bolt)" stroke="#B26A00" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- ground line -->
+  <rect x="20" y="205" width="200" height="8" rx="4" fill="#1B5E20" opacity="0.8"/>
+</svg>

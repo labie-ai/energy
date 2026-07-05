@@ -1,0 +1,14 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="220" fill="#E3F6F5"/>
+  <rect x="145" y="70" width="10" height="120" fill="#CFD8DC"/>
+  <g transform="translate(150,70)">
+    <g>
+      <path d="M0 0 L6 -60 L-6 -55 Z" fill="#FAFAFA" stroke="#B0BEC5"/>
+      <path d="M0 0 L55 20 L48 32 Z" fill="#FAFAFA" stroke="#B0BEC5" transform="rotate(120)"/>
+      <path d="M0 0 L-50 30 L-42 40 Z" fill="#FAFAFA" stroke="#B0BEC5" transform="rotate(240)"/>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/>
+    </g>
+    <circle r="6" fill="#607D8B"/>
+  </g>
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="14" fill="#00695C" text-anchor="middle" font-weight="700">Turbin Angin</text>
+</svg>

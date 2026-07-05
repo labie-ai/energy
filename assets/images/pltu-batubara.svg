@@ -1,0 +1,28 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B0C4D4"/>
+      <stop offset="100%" stop-color="#E3E9EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="220" fill="url(#sky1)"/>
+  <ellipse cx="230" cy="55" rx="35" ry="16" fill="#9AA5AC" opacity="0.8"/>
+  <ellipse cx="255" cy="40" rx="28" ry="13" fill="#B3BCC2" opacity="0.7"/>
+  <rect x="40" y="150" width="220" height="55" fill="#5C6B73"/>
+  <rect x="60" y="90" width="26" height="60" fill="#37474F"/>
+  <rect x="110" y="70" width="26" height="80" fill="#37474F"/>
+  <path d="M70 90 C60 70 55 50 68 30" stroke="#B0BEC5" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M120 70 C112 45 118 25 130 8" stroke="#CFD8DC" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M118 150 L118 170 M100 150 L100 170 M136 150 L136 170" stroke="#263238" stroke-width="4"/>
+  <circle cx="235" cy="110" r="30" fill="#455A64"/>
+  <rect x="225" y="130" width="20" height="70" fill="#455A64"/>
+  <rect x="30" y="185" width="240" height="20" fill="#37474F"/>
+  <g fill="#37474F" opacity="0.9">
+    <rect x="45" y="205" width="8" height="12"/>
+    <rect x="65" y="205" width="8" height="12"/>
+    <rect x="85" y="205" width="8" height="12"/>
+    <rect x="205" y="205" width="8" height="12"/>
+    <rect x="225" y="205" width="8" height="12"/>
+  </g>
+  <text x="150" y="18" font-family="Poppins, sans-serif" font-size="14" fill="#455A64" text-anchor="middle" font-weight="700">PLTU Batu Bara</text>
+</svg>

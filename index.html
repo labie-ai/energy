@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Energy Mission — Selamatkan Kota dengan Energi Bijak</title>
+<link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= CITY BACKGROUND ================= -->
+<div class="bg-scene" aria-hidden="true">
+  <img class="bg-city" src="assets/images/bg-city.svg" alt="">
+
+  <!-- --- Child-friendly sunny scene overlay (awan, matahari, pohon, anak bermain, superhero) --- -->
+  <div class="sky-decor" aria-hidden="true">
+    <img class="deco-sun" src="assets/images/matahari.svg" alt="">
+
+    <img class="deco-cloud deco-cloud-1" src="assets/images/awan.svg" alt="">
+    <img class="deco-cloud deco-cloud-2" src="assets/images/awan.svg" alt="">
+    <img class="deco-cloud deco-cloud-3" src="assets/images/awan.svg" alt="">
+    <img class="deco-cloud deco-cloud-4" src="assets/images/awan.svg" alt="">
+
+    <!-- --- Mobil kecil di jalan rumput --- -->
+    <img class="deco-small-car" src="assets/images/car.png" alt="Mobil kecil" />
+
+    <div class="deco-trees" aria-hidden="true">
+      <img class="deco-tree deco-tree-1" src="assets/images/pohon.svg" alt="">
+      <img class="deco-tree deco-tree-2" src="assets/images/pohon.svg" alt="">
+      <img class="deco-tree deco-tree-3" src="assets/images/pohon.svg" alt="">
+    </div>
+
+    <div class="deco-ground" aria-hidden="true">
+      <img class="deco-kid" src="assets/images/character_boy_happy.png" alt="">
+      <img class="deco-kid deco-kid-2" src="assets/images/character_girl_happy.png" alt="">
+
+      <img class="deco-superhero" src="assets/images/character_main.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+<canvas id="fx-canvas"></canvas>
+
+<!-- ================= TOP BAR (in-game) ================= -->
+<header id="topbar" class="topbar hidden">
+  <button id="btn-home" class="icon-btn" title="Kembali ke Beranda"><img src="assets/images/btn_home.png" alt="Beranda" class="icon-img"></button>
+  <div class="topbar-info">
+    <span id="hud-level" class="hud-chip">Lv. 1</span>
+    <div class="xp-bar"><div id="hud-xp-fill" class="xp-fill"></div></div>
+    <span id="hud-score" class="hud-chip"><img src="assets/images/icon_star.png" alt="Skor" class="chip-icon"> 0</span>
+  </div>
+  <div class="topbar-actions">
+    <button id="btn-mute" class="icon-btn" title="Mute/Unmute"><img src="assets/images/btn_music_on.png" alt="Musik" class="icon-img"></button>
+    <button id="btn-pause" class="icon-btn" title="Jeda"><img src="assets/images/btn_pause.png" alt="Jeda" class="icon-img"></button>
+    <button id="btn-fullscreen" class="icon-btn" title="Layar Penuh"><span>⛶</span></button>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ LOADING SCREEN ============ -->
+  <section id="screen-loading" class="screen active">
+    <div class="loading-box">
+      <img src="assets/images/logo.svg" class="loading-logo" alt="Logo Energy Mission">
+      <h1 class="game-title">Energy Mission</h1>
+      <p class="game-subtitle">Selamatkan Kota dengan Energi Bijak</p>
+      <div class="loading-bar"><div id="loading-fill" class="loading-fill"></div></div>
+      <p id="loading-text" class="loading-text">Menyiapkan kota...</p>
+    </div>
+  </section>
+
+  <!-- ============ PROFILE INPUT ============ -->
+  <section id="screen-profile" class="screen">
+    <div class="panel narrow center">
+      <h2 class="panel-title">Selamat Datang!</h2>
+      <p class="panel-desc">Masukkan nama dan kelasmu dulu ya, supaya bisa tersimpan di sertifikat dan papan skor.</p>
+      <div class="settings-row">
+        <label for="start-name">🧑 Nama</label>
+        <input type="text" id="start-name" maxlength="24" placeholder="Contoh: Budi">
+      </div>
+      <div class="settings-row">
+        <label for="start-class">🏫 Kelas</label>
+        <input type="text" id="start-class" maxlength="12" placeholder="Contoh: 6A">
+      </div>
+      <button id="btn-start-game" class="menu-btn primary">Mulai Petualangan</button>
+    </div>
+  </section>
+
+  <!-- ============ HOME / BERANDA ============ -->
+  <section id="screen-home" class="screen">
+    <div class="home-wrap">
+      <img src="assets/images/logo.svg" class="home-logo" alt="Logo Energy Mission">
+      <h1 class="game-title">Energy Mission</h1>
+      <p class="game-subtitle">Selamatkan Kota dengan Energi Bijak</p>
+      <nav class="menu-grid">
+        <button class="menu-btn primary" data-nav="mission-select"><img src="assets/images/btn_play.png" class="menu-img" alt="Mulai"><span>Mulai</span></button>
+        <button class="menu-btn" data-nav="materi"><img src="assets/images/bolt.png" class="menu-img" alt="Materi"><span>Materi</span></button>
+        <button class="menu-btn" data-nav="settings"><img src="assets/images/btn_help.png" class="menu-img" alt="Pengaturan"><span>Pengaturan</span></button>
+        <button class="menu-btn" data-nav="badge"><img src="assets/images/badge.png" class="menu-img" alt="Badge"><span>Badge</span></button>
+        <button class="menu-btn" data-nav="certificate"><img src="assets/images/ribbon.png" class="menu-img" alt="Sertifikat"><span>Sertifikat</span></button>
+        <button class="menu-btn" data-nav="score"><img src="assets/images/icon_star.png" class="menu-img" alt="Skor"><span>Skor</span></button>
+        <button class="menu-btn" data-nav="about"><span class="menu-icon">ℹ️</span><span>Tentang</span></button>
+      </nav>
+      <p class="player-tag">Pemain: <span id="home-player-name">Petualang Energi</span> · Kelas <span id="home-player-class">-</span> · Lv. <span id="home-level">1</span></p>
+    </div>
+  </section>
+
+  <!-- ============ MISSION SELECT ============ -->
+  <section id="screen-mission-select" class="screen">
+    <div class="panel">
+      <h2 class="panel-title"><img src="assets/images/path.png" alt="Map" style="width:1.6rem; height:1.6rem; margin-right:6px; vertical-align:middle;"> Peta Petualangan</h2>
+      <p class="panel-desc">Selesaikan misi secara berurutan untuk membuka misi berikutnya dan menjadi Penyelamat Energi!</p>
+    <div class="mission-map" id="mission-list"><!-- diisi via JS --></div>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ MATERI ============ -->
+  <section id="screen-materi" class="screen">
+    <div class="panel">
+      <h2 class="panel-title">Materi: Energi Fosil &amp; Energi Terbarukan</h2>
+      <div class="materi-grid">
+        <div class="materi-card">
+          <img src="assets/images/pltu-batubara.svg" alt="Batu Bara">
+          <h3>Energi Fosil</h3>
+          <p>Energi fosil (batu bara, minyak bumi, gas alam) terbentuk dari sisa makhluk hidup purba selama jutaan tahun. Sifatnya tidak dapat diperbarui dan penggunaannya menghasilkan polusi udara serta gas rumah kaca.</p>
+        </div>
+        <div class="materi-card">
+          <img src="assets/images/panel-surya.svg" alt="Panel Surya">
+          <h3>Energi Terbarukan</h3>
+          <p>Energi terbarukan (matahari, angin, air, panas bumi, biogas) tersedia melimpah di alam dan dapat digunakan berulang tanpa habis, serta lebih ramah lingkungan.</p>
+        </div>
+        <div class="materi-card">
+          <img src="assets/images/turbin-angin.svg" alt="Turbin Angin">
+          <h3>Dampak Energi Fosil</h3>
+          <p>Penggunaan energi fosil berlebihan menyebabkan polusi udara, pemanasan global, dan cadangan energi semakin menipis karena tidak dapat diperbarui dengan cepat.</p>
+        </div>
+        <div class="materi-card">
+          <img src="assets/images/plta-air.svg" alt="PLTA">
+          <h3>Solusi Hemat Energi</h3>
+          <p>Mematikan alat elektronik yang tidak digunakan, memanfaatkan cahaya alami, menggunakan transportasi umum, dan beralih ke energi terbarukan adalah langkah bijak menghemat energi.</p>
+        </div>
+      </div>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section id="screen-settings" class="screen">
+    <div class="panel narrow">
+      <h2 class="panel-title">Pengaturan</h2>
+      <div class="settings-row">
+        <label for="range-music">🎵 Musik Latar</label>
+        <input type="range" id="range-music" min="0" max="100" value="60">
+      </div>
+      <div class="settings-row">
+        <label for="range-sfx">🔔 Efek Suara</label>
+        <input type="range" id="range-sfx" min="0" max="100" value="80">
+      </div>
+      <div class="settings-row">
+        <label for="toggle-mute">🔇 Bisukan Semua Suara</label>
+        <input type="checkbox" id="toggle-mute">
+      </div>
+      <div class="settings-row">
+        <button id="btn-reset-progress" class="btn-danger">Reset Progres</button>
+      </div>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ BADGE ============ -->
+  <section id="screen-badge" class="screen">
+    <div class="panel">
+      <h2 class="panel-title">Badge &amp; Achievement</h2>
+      <div class="badge-grid" id="badge-grid"><!-- diisi via JS --></div>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATE ============ -->
+  <section id="screen-certificate" class="screen">
+    <div class="panel narrow center">
+      <h2 class="panel-title">Sertifikat Penghargaan</h2>
+      <p class="panel-desc" id="cert-status">Selesaikan seluruh misi untuk membuka sertifikatmu!</p>
+      <canvas id="cert-canvas" width="1000" height="700" class="cert-canvas"></canvas>
+      <div class="cert-actions">
+        <button id="btn-download-cert-png" class="menu-btn primary" disabled>⬇️ Unduh PNG</button>
+        <button id="btn-download-cert-pdf" class="menu-btn" disabled>⬇️ Unduh PDF</button>
+      </div>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ SCORE / LEADERBOARD ============ -->
+  <section id="screen-score" class="screen">
+    <div class="panel narrow">
+      <h2 class="panel-title">Papan Skor</h2>
+      <table class="score-table">
+        <thead><tr><th>#</th><th>Nama</th><th>Kelas</th><th>Skor</th><th>Level</th><th>Tanggal</th></tr></thead>
+        <tbody id="score-table-body"></tbody>
+      </table>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="screen-about" class="screen">
+    <div class="panel narrow">
+      <h2 class="panel-title">Tentang Energy Mission</h2>
+      <p>Energy Mission adalah media pembelajaran interaktif untuk mata pelajaran IPA Kelas VI SD dengan topik energi fosil, pemanfaatannya, dampak, dan solusi hemat energi.</p>
+      <p>Tujuan pembelajaran:</p>
+      <ul>
+        <li>Mengidentifikasi berbagai sumber energi fosil</li>
+        <li>Menjelaskan pemanfaatan sumber energi dalam kehidupan sehari-hari</li>
+        <li>Menganalisis dampak penggunaan energi fosil</li>
+        <li>Menentukan solusi hemat energi yang tepat</li>
+        <li>Melatih kemampuan berpikir kritis melalui studi kasus</li>
+      </ul>
+      <p class="small-note">Media pembelajaran interaktif.</p>
+      <div class="panel-actions"><button class="menu-btn btn-danger screen-quit">Keluar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ MISI 1: IDENTIFIKASI (PILIHAN GANDA) ============ -->
+  <section id="screen-misi1" class="screen game-screen">
+    <div class="game-panel">
+      <div class="game-head">
+        <h2>Misi 1: Identifikasi Energi Fosil</h2>
+        <span id="m1-progress" class="progress-chip">Soal 1/10</span>
+      </div>
+      <div class="quiz-card">
+        <img id="m1-image" class="quiz-image hidden" alt="Gambar soal">
+        <p id="m1-question" class="quiz-question"></p>
+        <div id="m1-options" class="options-grid"></div>
+      </div>
+      <button id="m1-next" class="menu-btn primary next-btn" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ MISI 2: DRAG AND DROP ============ -->
+  <section id="screen-misi2" class="screen game-screen">
+    <div class="game-panel">
+      <div class="game-head">
+        <h2>Misi 2: Pasangkan Sumber Energi</h2>
+        <span id="m2-progress" class="progress-chip">Pasangan tersisa: 8</span>
+      </div>
+      <p class="dnd-instruction">Seret kartu <strong>pemanfaatan energi</strong> ke <strong>sumber energi</strong> yang tepat!</p>
+      <div class="dnd-wrap">
+        <div class="dnd-column" id="dnd-sources"></div>
+        <div class="dnd-column" id="dnd-targets"></div>
+      </div>
+      <button id="m2-next" class="menu-btn primary next-btn hidden">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ MISI 3: STUDI KASUS ============ -->
+  <section id="screen-misi3" class="screen game-screen">
+    <div class="game-panel">
+      <div class="game-head">
+        <h2>Misi 3: Studi Kasus</h2>
+        <span id="m3-progress" class="progress-chip">Kasus 1/8</span>
+      </div>
+      <div class="quiz-card">
+        <img id="m3-image" class="quiz-image hidden" alt="Gambar studi kasus">
+        <p id="m3-case" class="case-text"></p>
+        <p id="m3-question" class="quiz-question"></p>
+        <div id="m3-options" class="options-grid"></div>
+      </div>
+      <button id="m3-next" class="menu-btn primary next-btn" disabled>Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ MISI 4: PILIH SOLUSI (CHECKBOX) ============ -->
+  <section id="screen-misi4" class="screen game-screen">
+    <div class="game-panel">
+      <div class="game-head">
+        <h2>Misi 4: Pilih Solusi Terbaik</h2>
+        <span id="m4-progress" class="progress-chip">Kasus 1/8</span>
+      </div>
+      <div class="quiz-card">
+        <p id="m4-case" class="case-text"></p>
+        <p id="m4-question" class="quiz-question"></p>
+        <div id="m4-options" class="options-grid checkbox-grid"></div>
+        <button id="m4-submit" class="menu-btn primary" style="margin-top:14px;">Periksa Jawaban</button>
+      </div>
+      <button id="m4-next" class="menu-btn primary next-btn hidden">Lanjut →</button>
+    </div>
+  </section>
+
+  <!-- ============ MISI 5: ESCAPE CHALLENGE (TIMER) ============ -->
+  <section id="screen-misi5" class="screen game-screen">
+    <div class="game-panel">
+      <div class="game-head">
+        <h2>Misi 5: Escape Challenge</h2>
+        <span id="m5-timer" class="progress-chip timer-chip"><img src="assets/images/timer.png" alt="Timer" style="width:1.1rem; height:1.1rem; margin-right:4px; vertical-align:middle;"> 60</span>
+      </div>
+      <p class="dnd-instruction">Waktu terbatas! Jawab Benar/Salah secepat mungkin sebelum kota kehabisan energi!</p>
+      <div class="quiz-card">
+        <p id="m5-statement" class="quiz-question big"></p>
+        <div class="options-grid two-col">
+          <button class="option-btn tf-btn" id="m5-true"><img src="assets/images/icon_correct.png" alt="Benar" style="width:1.2rem; height:1.2rem; margin-right:4px; vertical-align:middle;"> BENAR</button>
+          <button class="option-btn tf-btn" id="m5-false"><img src="assets/images/icon_wrong.png" alt="Salah" style="width:1.2rem; height:1.2rem; margin-right:4px; vertical-align:middle;"> SALAH</button>
+        </div>
+      </div>
+      <p id="m5-score-line" class="progress-chip">Skor cepat: 0</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= RESULT POPUP ================= -->
+<div id="popup-overlay" class="popup-overlay hidden">
+  <div class="popup-box">
+    <div id="popup-icon" class="popup-icon"><img src="assets/images/icon_star.png" alt="Selesai" style="width:3rem; height:3rem; object-fit:contain;"></div>
+    <h2 id="popup-title">Misi Selesai!</h2>
+    <p id="popup-desc">Kamu mendapatkan XP dan skor baru.</p>
+    <div class="popup-stats">
+      <div><span id="popup-correct">0</span><small>Benar</small></div>
+      <div><span id="popup-xp">0</span><small>XP</small></div>
+      <div><span id="popup-score">0</span><small>Skor</small></div>
+    </div>
+    <div class="popup-actions">
+      <button id="popup-retry" class="menu-btn">Ulangi</button>
+      <button id="popup-continue" class="menu-btn primary">Lanjutkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONFIRM RESET MODAL ================= -->
+<div id="confirm-reset-overlay" class="popup-overlay hidden" aria-hidden="true">
+  <div class="popup-box">
+    <h2>Konfirmasi Reset Progres</h2>
+    <p>Yakin ingin menghapus semua progres, skor, dan badge?</p>
+    <div class="popup-actions">
+      <button id="confirm-reset-cancel" class="menu-btn">Batal</button>
+      <button id="confirm-reset-ok" class="menu-btn btn-danger">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PAUSE MODAL ================= -->
+<div id="pause-overlay" class="popup-overlay hidden">
+  <div class="popup-box">
+    <h2>Jeda Permainan</h2>
+    <div class="popup-actions column">
+      <button id="btn-resume" class="menu-btn primary"><img src="assets/images/btn_play.png" alt="Play" style="width:1.2rem; height:1.2rem; margin-right:4px; vertical-align:middle;"> Lanjutkan</button>
+      <button id="btn-restart" class="menu-btn"><img src="assets/images/btn_restart.png" alt="Restart" style="width:1.2rem; height:1.2rem; margin-right:4px; vertical-align:middle;"> Mulai Ulang Misi</button>
+      <button id="btn-quit-to-home" class="menu-btn btn-danger">Keluar ke Beranda</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST / TOOLTIP ================= -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="data/questions.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="220" fill="#F2E4C9"/>
+  <ellipse cx="150" cy="195" rx="140" ry="20" fill="#C9A66B"/>
+  <g transform="translate(110,60)">
+    <rect x="0" y="90" width="10" height="55" fill="#6D4C2B"/>
+    <rect x="-25" y="60" width="60" height="12" fill="#795548"/>
+    <polygon points="-15,60 25,60 10,10 0,10" fill="#8D6E63"/>
+    <circle cx="5" cy="0" r="14" fill="#3E2723"/>
+    <rect x="-8" y="60" width="10" height="45" fill="#4E342E">
+      <animateTransform attributeName="transform" type="rotate" from="0 -3 65" to="-25 -3 65" dur="1.1s" repeatCount="indefinite" additive="sum" values="0 -3 65; -22 -3 65; 0 -3 65" keyTimes="0;0.5;1"/>
+    </rect>
+  </g>
+  <rect x="70" y="150" width="10" height="45" fill="#5D4037"/>
+  <ellipse cx="75" cy="150" rx="18" ry="8" fill="#3E2723"/>
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="14" fill="#5D4037" text-anchor="middle" font-weight="700">Sumur Minyak Bumi</text>
+</svg>
