@@ -1,6 +1,6 @@
 # Energy Mission: Selamatkan Kota dengan Energi Bijak
 
-Game edukasi IPAS Kelas VI SD — HTML5, CSS3, Vanilla JavaScript (tanpa framework).
+Game edukasi IPA Kelas VI SD — HTML5, CSS3, Vanilla JavaScript (tanpa framework).
 
 ## Cara menjalankan
 Buka `index.html` langsung di browser (Chrome/Edge/Firefox). Tidak perlu server maupun instalasi apa pun — 100% offline.
